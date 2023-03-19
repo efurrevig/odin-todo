@@ -7,6 +7,7 @@ module.exports = {
         index: './src/index.js',
         project: './src/project.js',
         todo: './src/todo.js',
+        eventListeners: './src/eventListeners.js',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -14,7 +15,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'TODO',
+            title: 'Listify',
         }),
     ],
     output: {

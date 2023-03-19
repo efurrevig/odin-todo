@@ -1,49 +1,104 @@
 import './style.css';
+import { getProjects } from './project.js';
+import addEventListeners from './eventListeners.js';
 
-//const projects = getProjects();
 
-//temp
-const projects = ["default", "project1", "project2", "project3"]
+const projects = getProjects();
 
-function createDisplay() {
-    // display
-    const display = document.createElement('div');
-    display.classList.add('container-main');
-
+function createSidebar() {
     // project nav
-    const projectNav = document.createElement('div');
-    projectNav.classList.add('project-nav');
-        // project nav header
-    const headerContainer = document.createElement('div');
-    headerContainer.classList.add('project-nav-header');
-    let h2 = document.createElement('h2');
-    h2.textContent = 'Listify';
-    headerContainer.appendChild(h2);
-    projectNav.appendChild(headerContainer);
+    const sidebar = document.createElement('div');
+    sidebar.classList.add('sidebar');
+  
+    // project nav header
+    sidebar.appendChild((() => {
+      const headerContainer = document.createElement('div');
+      headerContainer.classList.add('sidebar-header');
 
-        // project nav list
+      let h2 = document.createElement('h2');
+      h2.textContent = 'Listify';
+      headerContainer.appendChild(h2);
+
+      return headerContainer;
+    })());
+  
+    // project nav list
     const navListContainer = document.createElement('div');
-    navListContainer.classList.add('project-nav-container');
-    const navList = document.createElement('ul');
-    navList.classList.add('project-nav-list');
-    projects.forEach(project => {
+    navListContainer.classList.add('sidebar-container');
+
+    navListContainer.appendChild((() => {
+      const navList = document.createElement('ul');
+      navList.classList.add('sidebar-list');
+      projects.forEach(project => {
         let li = document.createElement('li');
         li.textContent = project;
         navList.appendChild(li);
-    });
-    navListContainer.appendChild(navList);
-    projectNav.appendChild(navListContainer);
+      });
+      navList.firstChild.classList.add('active');
+      return navList;
+    })());
+  
+    sidebar.appendChild(navListContainer);
+  
+    return sidebar;
+}
 
 
-    display.appendChild(projectNav);
-    
-    // ToDo display
+function createTodoDisplay(project) {
+
     const todoDisplay = document.createElement('div');
     todoDisplay.classList.add('todo-display');
-    display.appendChild(todoDisplay);
+
+    const todoHeader = () => {
+        const header = document.createElement('div');
+        header.classList.add('todo-header');
+
+        const title = document.createElement('h2');
+        title.textContent = project.name;
+        header.appendChild(title);
+
+        const button = document.createElement('button');
+        button.textContent = 'New Todo';
+        header.appendChild(button);
+
+        return header;
+    };
+
+    const todoList = () => {
+        const list = document.createElement('div');
+        list.classList.add('todo-list');
+        
+        for (let i = 0; i < 5; i++) {
+            const todo = document.createElement('div');
+            todo.classList.add('todo-item');
+            todo.textContent = 'todo ' + i;
+            list.appendChild(todo);
+        }
+        return list
+    }
+    todoDisplay.appendChild(todoHeader());
+    todoDisplay.appendChild(todoList());
+
+    return todoDisplay;
+
+}
+
+function createDisplay() {
+    const display = document.createElement('div');
+    display.classList.add('container-main');
+
+    display.appendChild(createSidebar());
+    
+    // ToDo display
+    const project = JSON.parse(localStorage[projects[0]]);
+    display.appendChild(createTodoDisplay(project));
 
     return display;
     
 }
 
 document.body.appendChild(createDisplay());
+addEventListeners()
+
+
+
