@@ -1,8 +1,9 @@
-export default class Project {
-    constructor(name, description, todos = []) {
+class Project {
+    constructor(name, description, todos = [], nextId = 0) {
         this.name = name;
         this.description = description;
         this.todos = todos;
+        this.nextId = nextId;
         this.saveToLS();
     }
     saveToLS() {
@@ -10,7 +11,7 @@ export default class Project {
     }
 }
 
-export function buildDefaultProject() {
+function buildDefaultProject() {
     let defaultProject = new Project("Default", "default project");
     return defaultProject;
 }

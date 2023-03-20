@@ -8,6 +8,7 @@ module.exports = {
         project: './src/project.js',
         todo: './src/todo.js',
         eventListeners: './src/eventListeners.js',
+        todoModal: './src/todoModal.js',
     },
     devtool: 'inline-source-map',
     devServer: {

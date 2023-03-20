@@ -1,5 +1,5 @@
 import './style.css';
-import { getProjects } from './project.js';
+import {getProjects} from './project.js';
 import addEventListeners from './eventListeners.js';
 
 
@@ -58,6 +58,7 @@ function createTodoDisplay(project) {
         header.appendChild(title);
 
         const button = document.createElement('button');
+        button.id = 'new-todo-button';
         button.textContent = 'New Todo';
         header.appendChild(button);
 
