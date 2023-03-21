@@ -1,7 +1,7 @@
 import './style.css';
 import {getProjects} from './project.js';
 import addEventListeners from './eventListeners.js';
-
+import Project from './project.js';
 
 const projects = getProjects();
 
@@ -31,7 +31,7 @@ function createSidebar() {
       navList.classList.add('sidebar-list');
       projects.forEach(project => {
         let li = document.createElement('li');
-        li.textContent = project;
+        li.textContent = project.name;
         navList.appendChild(li);
       });
       navList.firstChild.classList.add('active');
@@ -58,7 +58,8 @@ function createTodoDisplay(project) {
         header.appendChild(title);
 
         const button = document.createElement('button');
-        button.id = 'new-todo-button';
+        button.id = project.name;
+        button.classList.add('new-todo-button');
         button.textContent = 'New Todo';
         header.appendChild(button);
 
@@ -91,7 +92,8 @@ function createDisplay() {
     display.appendChild(createSidebar());
     
     // ToDo display
-    const project = JSON.parse(localStorage[projects[0]]);
+    const project = projects[0];
+    console.log(project.name);
     display.appendChild(createTodoDisplay(project));
 
     return display;

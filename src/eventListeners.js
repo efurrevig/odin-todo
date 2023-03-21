@@ -1,15 +1,16 @@
 import todoModal from './todoModal.js';
-
+import { getProject } from './lsControl.js';
 
 const viewProject = item => {
-    console.log('hello');
     item.target.classList.add('active');
-    let project = JSON.parse(localStorage.getItem(item.target.textContent));
+    let project = getProject(item.target.textContent);
     console.log(project);
 }
 
 const addTodo = item => {
-    document.body.appendChild(todoModal());
+    let projectName = item.target.id;
+    let project = getProject(projectName);
+    document.body.appendChild(todoModal(project));
 }
 const addEventListeners = () => {
     // Add event listeners to the DOM
@@ -17,7 +18,7 @@ const addEventListeners = () => {
         item.addEventListener('click', viewProject);
     });
 
-    document.getElementById('new-todo-button').addEventListener('click', addTodo);
+    document.querySelector('.new-todo-button').addEventListener('click', addTodo);
 }
 
 export default addEventListeners;

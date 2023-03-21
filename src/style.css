@@ -1,3 +1,6 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
+
+
 :root {
     --bg-primary-color: #1e1e27;
     --bg-secondary-color: #39373f;
@@ -9,8 +12,24 @@
 
     --button-primary-color: rgb(113, 78, 222);
     --button-hover-color: rgb(128, 94, 230);
+    
+    --radio-button-hover: rgb(77, 24, 233);
 
     --modal-background-color: rgb(0, 0, 0);
+}
+
+::-webkit-scrollbar {
+    background-color: var(--bg-primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--bg-secondary-color);
+    border-radius: 10px;
+    border: 3px solid var(--bg-primary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--button-hover-color);
 }
 
 body {
@@ -113,21 +132,21 @@ body {
     z-index: 1;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: var(--modal-background-color);
     background-color: rgb(0,0,0,0.4);
 }
 
 .todo-modal-content {
     display: grid;
-    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr .1fr;
     gap: 5px;
     background-color: var(--container-primary-color);
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 40%;
     padding: 0 20px 0 20px;
+    overflow: auto;
 }
 
 .todo-modal-content input {
@@ -143,7 +162,16 @@ body {
     outline-width: 0;
 }
 
-
+#todo-description {
+    background-color: var(--bg-secondary-color);
+    border: none;
+    border-radius: 0.5em;
+    width: 95%;
+    height: 5em;
+    padding: 0.5em;
+    color: white;
+    resize: none;
+}
 
 
 #close-form-button {
@@ -160,6 +188,8 @@ body {
     color: var(--button-hover-color);
 }
 
+
+
 .todo-form-header{
     display: flex;
     justify-content: space-between;
@@ -171,4 +201,48 @@ body {
     align-items: center;
     grid-template-columns: 1fr 4fr;
     gap: 15px;
+}
+
+.todo-form-submit-button {
+    background-color: var(--button-primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    max-height: 2.1em;
+    max-width: 10em;
+    text-align: center;
+    margin: auto;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio-button {
+    display: none;
+    appearance: none;
+    margin: 0;
+    width: 0;
+    background-color: var(--container-primary-color);
+}
+
+
+.todo-form-radio-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: left;
+}
+
+.radio-button-label {
+    margin: 0 4em 0 0;
+    cursor: pointer;
+}
+
+.radio-button-label i {
+    font-size: 1.5rem;
+    color: var(--button-primary-color);
+}
+
+.radio-button:checked + .radio-button-label i {
+    color: var(--radio-button-hover);
 }

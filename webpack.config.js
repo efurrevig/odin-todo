@@ -9,6 +9,7 @@ module.exports = {
         todo: './src/todo.js',
         eventListeners: './src/eventListeners.js',
         todoModal: './src/todoModal.js',
+        lsControl: './src/lsControl.js',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -27,8 +28,12 @@ module.exports = {
     module: {
         rules: [
             {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ],
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
         ],
     },
