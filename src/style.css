@@ -9,6 +9,8 @@
 
     --button-primary-color: rgb(113, 78, 222);
     --button-hover-color: rgb(128, 94, 230);
+
+    --modal-background-color: rgb(0, 0, 0);
 }
 
 body {
@@ -25,6 +27,8 @@ body {
     grid-template-columns: 1fr 5fr;
     width: 90%;
 }
+
+/* SIDEBAR */
 
 .sidebar {
     display: grid;
@@ -68,6 +72,7 @@ body {
     background-color: var(--bg-primary-color);
 }
 
+ /* PROJECT/MAIN DISPLAY */
 
 .todo-display {
     display: grid;
@@ -99,41 +104,71 @@ body {
 
 }
 
-.todo-modal {
-    position: absolute;
+
+/* MODAL */
+.modal {
+    top: 0;
+    left: 0;
+    position: fixed;
     z-index: 1;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--modal-background-color);
+    background-color: rgb(0,0,0,0.4);
 }
 
-.todo-modal .active {
-    display: block;
+.todo-modal-content {
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    gap: 5px;
+    background-color: var(--container-primary-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    padding: 0 20px 0 20px;
 }
-/* @media (min-width: 576px) {
-    .container-main {
-        max-width: 540px;
-    }
-  }
-@media (min-width: 768px) {
-    .container-main {
-        max-width: 720px;
-    }
+
+.todo-modal-content input {
+    background-color: var(--bg-secondary-color);
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    color: white;
+    width: 95%;
 }
-@media (min-width: 992px) {
-    .container-main {
-        max-width: 960px;
-    }
+
+.todo-modal-content input:focus {
+    outline-width: 0;
 }
-@media (min-width: 1200px) {
-    .container-main {
-        max-width: 1140px;
-    }
+
+
+
+
+#close-form-button {
+    text-align: center;
+    color: white;
+    border: none;
+    background-color: var(--container-primary-color);
+    font-size: 1rem;
+    max-width: 2em;
+    cursor: pointer;
 }
-@media (min-width: 1400px) {
-    .container-main {
-        max-width: 1320px;
-    }
-} */
+
+#close-form-button:hover {
+    color: var(--button-hover-color);
+}
+
+.todo-form-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:rgb(113, 78, 222) 1px solid;
+}
+
+.todo-form-container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 4fr;
+    gap: 15px;
+}
