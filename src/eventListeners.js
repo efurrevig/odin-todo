@@ -1,10 +1,10 @@
 import todoModal from './todoModal.js';
+import projectModal from './projectModal.js';
 import { getProject } from './lsControl.js';
 
 const viewProject = item => {
     item.target.classList.add('active');
     let project = getProject(item.target.textContent);
-    console.log(project);
 }
 
 const addTodo = item => {
@@ -12,13 +12,24 @@ const addTodo = item => {
     let project = getProject(projectName);
     document.body.appendChild(todoModal(project));
 }
-const addEventListeners = () => {
-    // Add event listeners to the DOM
+
+const createProject = () => {
+    // Create a new project
+    document.body.appendChild(projectModal());
+    console.log('create project');
+}
+
+const addSidebarListeners = () => {
     document.querySelectorAll('.sidebar-list li').forEach(item => {
         item.addEventListener('click', viewProject);
     });
-
-    document.querySelector('.new-todo-button').addEventListener('click', addTodo);
 }
 
-export default addEventListeners;
+const addEventListeners = () => {
+    // Add event listeners to the DOM
+
+    document.querySelector('.new-todo-button').addEventListener('click', addTodo);
+    document.querySelector('.new-project-button').addEventListener('click', createProject);
+}
+
+export { addEventListeners, addSidebarListeners };

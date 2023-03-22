@@ -51,7 +51,7 @@ body {
 
 .sidebar {
     display: grid;
-    grid-template-rows: 1fr 7fr;
+    grid-template-rows: 1fr .5fr 7fr;
     border-right: 1px solid var(--bg-secondary-color);
 }
 
@@ -66,9 +66,26 @@ body {
     color: var(--sidebar-header-color);
 }
 
+.new-project-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-primary-color);
+    color: white;
+    border: none;
+    width: 95%;
+    margin: auto;
+    padding: 0.5em;
+    max-height: 2em;
+    cursor: pointer;
+}
+
+.new-project-button:hover {
+    background-color: var(--button-hover-color);
+}
+
 .sidebar-list {
-    padding-left: 1.2em;
-    padding-right: 1.2em;
+    padding: 0;
     list-style: none;
     text-decoration: none;
 }
@@ -90,6 +107,13 @@ body {
     border: none;
     background-color: var(--bg-primary-color);
 }
+
+.sidebar-container {
+    display: grid;
+    gap: 1em;
+    padding: 1em;
+}
+
 
  /* PROJECT/MAIN DISPLAY */
 
@@ -136,6 +160,19 @@ body {
     background-color: rgb(0,0,0,0.4);
 }
 
+.project-modal-content {
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 1fr 0.5fr .1fr;
+    gap: 5px;
+    background-color: var(--container-primary-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    padding: 0 20px 0 20px;
+    overflow: auto;
+}
+
 .todo-modal-content {
     display: grid;
     grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr .1fr;
@@ -149,7 +186,7 @@ body {
     overflow: auto;
 }
 
-.todo-modal-content input {
+.modal input {
     background-color: var(--bg-secondary-color);
     border: none;
     border-radius: 0.5em;
@@ -158,11 +195,11 @@ body {
     width: 95%;
 }
 
-.todo-modal-content input:focus {
+.modal input:focus {
     outline-width: 0;
 }
 
-#todo-description {
+#description {
     background-color: var(--bg-secondary-color);
     border: none;
     border-radius: 0.5em;
@@ -190,20 +227,20 @@ body {
 
 
 
-.todo-form-header{
+.form-header {
     display: flex;
     justify-content: space-between;
     border-bottom:rgb(113, 78, 222) 1px solid;
 }
 
-.todo-form-container {
+.form-container {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 4fr;
     gap: 15px;
 }
 
-.todo-form-submit-button {
+.form-submit-button {
     background-color: var(--button-primary-color);
     color: white;
     border: none;

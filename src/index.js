@@ -1,6 +1,6 @@
 import './style.css';
 import {getProjects} from './project.js';
-import addEventListeners from './eventListeners.js';
+import { addEventListeners, addSidebarListeners } from './eventListeners.js';
 import Project from './project.js';
 
 const projects = getProjects();
@@ -22,6 +22,15 @@ function createSidebar() {
       return headerContainer;
     })());
   
+    // new project button
+    sidebar.appendChild((() => {
+      const newProjectButton = document.createElement('button');
+      newProjectButton.classList.add('new-project-button');
+      newProjectButton.textContent = 'Create Project';
+      return newProjectButton;
+    })());
+
+
     // project nav list
     const navListContainer = document.createElement('div');
     navListContainer.classList.add('sidebar-container');
@@ -43,6 +52,16 @@ function createSidebar() {
     return sidebar;
 }
 
+function reloadNavList() {
+    const navList = document.querySelector('.sidebar-list');
+    navList.innerHTML = '';
+    projects.forEach(project => {
+        let li = document.createElement('li');
+        li.textContent = project.name;
+        navList.appendChild(li);
+    });
+    navList.firstChild.classList.add('active');
+}
 
 function createTodoDisplay(project) {
 
@@ -93,7 +112,6 @@ function createDisplay() {
     
     // ToDo display
     const project = projects[0];
-    console.log(project.name);
     display.appendChild(createTodoDisplay(project));
 
     return display;
@@ -101,7 +119,9 @@ function createDisplay() {
 }
 
 document.body.appendChild(createDisplay());
-addEventListeners()
+addSidebarListeners();
+addEventListeners();
 
 
 
+export { reloadNavList, projects };

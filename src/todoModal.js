@@ -23,7 +23,7 @@ function formHeader() {
     button.textContent = 'X';
     button.addEventListener('click', closeModal);
 
-    headerContainer.className = 'todo-form-header';
+    headerContainer.className = 'form-header';
     headerContainer.appendChild(title);
     headerContainer.appendChild(button);
 
@@ -37,8 +37,8 @@ function titleInput() {
           inputContainer = document.createElement('div'),
           input = document.createElement('input');
     
-    container.classList.add('todo-form-container');
-    inputContainer.classList.add('todo-form-input-container');
+    container.classList.add('form-container');
+    inputContainer.classList.add('form-input-container');
 
     label.textContent = 'Title';
     label.htmlFor = 'todo-title';
@@ -61,13 +61,13 @@ function descriptionInput() {
           inputContainer = document.createElement('div'),
           input = document.createElement('textarea');
 
-    container.classList.add('todo-form-container');
-    inputContainer.classList.add('todo-form-input-container');
+    container.classList.add('form-container');
+    inputContainer.classList.add('form-input-container');
 
     label.textContent = 'Description';
     label.htmlFor = 'todo-description';
 
-    input.id = 'todo-description';
+    input.id = 'description';
     input.placeholder = 'Enter description';
 
     inputContainer.appendChild(input);
@@ -84,8 +84,8 @@ function dueDateInput() {
           inputContainer = document.createElement('div'),
           input = document.createElement('input');
 
-    container.classList.add('todo-form-container');
-    inputContainer.classList.add('todo-form-input-container');
+    container.classList.add('form-container');
+    inputContainer.classList.add('form-input-container');
 
     label.textContent = 'Due Date';
     label.htmlFor = 'todo-due-date';
@@ -108,7 +108,7 @@ function priorityInput() {
           inputContainer = document.createElement('div'),
           options = [['Low', 'empty'], ['Medium', 'half'], ['High', 'full']];
 
-    container.classList.add('todo-form-container');
+    container.classList.add('form-container');
     inputContainer.classList.add('todo-form-radio-container');
 
     label.id = 'priority-label';
@@ -150,10 +150,10 @@ function submitButton(project) {
     const button = document.createElement('button');
 
     button.textContent = 'Create Todo';
-    button.classList.add('todo-form-submit-button');
+    button.classList.add('form-submit-button');
     button.addEventListener('click', () => {
         const title = document.getElementById('todo-title').value,
-              description = document.getElementById('todo-description').value,
+              description = document.getElementById('description').value,
               dueDate = document.getElementById('todo-due-date').value,
               priorities = document.querySelectorAll('priority');
         let priority = 'Low';
@@ -165,7 +165,6 @@ function submitButton(project) {
         });
         const todo = new Todo(title, description, dueDate, priority, project);
         closeModal();
-        console.log(todo);
     });
 
     return button;

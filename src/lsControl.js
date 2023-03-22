@@ -1,4 +1,5 @@
 import Project from './project.js';
+
 // takes name of project and returns Project object
 function getProject(name) {
     const projectJSON = JSON.parse(localStorage.getItem(name));
