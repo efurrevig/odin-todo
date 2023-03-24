@@ -1,6 +1,6 @@
 import './style.css';
 import {getProjects} from './project.js';
-import { addEventListeners, addSidebarListeners } from './eventListeners.js';
+import { addEventListeners, addSidebarListener } from './eventListeners.js';
 import Project from './project.js';
 
 const projects = getProjects();
@@ -58,6 +58,7 @@ function reloadNavList() {
     projects.forEach(project => {
         let li = document.createElement('li');
         li.textContent = project.name;
+        addSidebarListener(li);
         navList.appendChild(li);
     });
     navList.firstChild.classList.add('active');
@@ -88,12 +89,12 @@ function createTodoDisplay(project) {
     const todoList = () => {
         const list = document.createElement('div');
         list.classList.add('todo-list');
-        
-        for (let i = 0; i < 5; i++) {
-            const todo = document.createElement('div');
-            todo.classList.add('todo-item');
-            todo.textContent = 'todo ' + i;
-            list.appendChild(todo);
+
+
+        const projectTodos = project.todos;
+        for (let i = 0; i < projectTodos.length; i++) {
+            const todo = projectTodos[i];
+            list.appendChild(createTodoItem(todo))
         }
         return list
     }
@@ -102,6 +103,34 @@ function createTodoDisplay(project) {
 
     return todoDisplay;
 
+}
+
+function createTodoItem(todo) {
+    const todoContainer = document.createElement('div');
+    todoContainer.classList.add('todo-item');
+
+    const checkbox = document.createElement('input');
+    checkbox.className = 'todo-checkbox';
+    checkbox.type = 'checkbox';
+    checkbox.checked = todo.completed;
+    // if checkbox.checked, add class 'completed' to todoContainer
+    
+    const title = document.createElement('p');
+    title.textContent = todo.title;
+
+    const dueDate = document.createElement('p');
+    dueDate.textContent = todo.dueDate;
+
+    const priority = document.createElement('i');
+    priority.className = 'priority-icon fa-solid fa-temperature-' + todo.priority;
+
+    todoContainer.appendChild(checkbox);
+    todoContainer.appendChild(title);
+    todoContainer.appendChild(dueDate);
+    todoContainer.appendChild(priority);
+    
+    return todoContainer;
+    
 }
 
 function createDisplay() {
@@ -119,9 +148,8 @@ function createDisplay() {
 }
 
 document.body.appendChild(createDisplay());
-addSidebarListeners();
 addEventListeners();
 
 
 
-export { reloadNavList, projects };
+export { reloadNavList, projects, createTodoItem };

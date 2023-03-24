@@ -1,12 +1,5 @@
 import Todo from './todo.js';
-import Project from './project.js';
-// constructor(title, description, dueDate, priority, project) {
-//     this.title = title;
-//     this.description = description;
-//     this.dueDate = dueDate;
-//     this.priority = priority;
-//     this.project = addToProject(project);
-// }
+import { createTodoItem } from './index.js';
 
 function closeModal() {
     document.getElementById('todo-modal').remove();
@@ -106,7 +99,7 @@ function priorityInput() {
     const container = document.createElement('div'),
           label = document.createElement('label'),
           inputContainer = document.createElement('div'),
-          options = [['Low', 'empty'], ['Medium', 'half'], ['High', 'full']];
+          options = ['empty', 'half', 'full'];
 
     container.classList.add('form-container');
     inputContainer.classList.add('todo-form-radio-container');
@@ -121,16 +114,16 @@ function priorityInput() {
               icon = document.createElement('i'),
               btnLabel = document.createElement('label');
 
-        input.id = option[0];
+        input.id = option;
         input.type = 'radio';
         input.name = 'priority';
-        input.value = option[0];
+        input.value = option;
         input.className = 'radio-button';
         div.appendChild(input);
 
-        icon.className = 'fa-solid fa-temperature-' + option[1];
+        icon.className = 'fa-solid fa-temperature-' + option;
 
-        btnLabel.htmlFor = option[0];
+        btnLabel.htmlFor = option;
         btnLabel.className = 'radio-button-label';
         btnLabel.appendChild(icon);
 
@@ -155,15 +148,9 @@ function submitButton(project) {
         const title = document.getElementById('todo-title').value,
               description = document.getElementById('description').value,
               dueDate = document.getElementById('todo-due-date').value,
-              priorities = document.querySelectorAll('priority');
-        let priority = 'Low';
-        priorities.forEach(p => {
-            if (p.checked) {
-                priority = p.value;
-                return
-            }
-        });
+              priority = document.querySelector('input[name=priority]:checked').value;
         const todo = new Todo(title, description, dueDate, priority, project);
+        document.querySelector('.todo-list').appendChild(createTodoItem(todo));
         closeModal();
     });
 

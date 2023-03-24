@@ -147,6 +147,29 @@ body {
 
 }
 
+.todo-list {
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0em 1em 0em 1em;
+    border-radius: 0.5em;
+    border: 1px solid var(--bg-secondary-color);
+}
+
+
+.todo-list .fa-solid {
+    color: var(--button-primary-color);
+}
+
+.todo-checkbox {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
 
 /* MODAL */
 .modal {
