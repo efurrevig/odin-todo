@@ -93,7 +93,7 @@ body {
 .sidebar-list li {
     padding: 1em;
     color: var(--side-link-color);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 .sidebar-list li:hover {

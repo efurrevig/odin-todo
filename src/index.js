@@ -141,7 +141,10 @@ function createDisplay() {
     
     // ToDo display
     const project = projects[0];
-    display.appendChild(createTodoDisplay(project));
+    const todoDisplayContainer = document.createElement('div');
+    todoDisplayContainer.id = 'todo-display-container';
+    todoDisplayContainer.appendChild(createTodoDisplay(project));
+    display.appendChild(todoDisplayContainer);
 
     return display;
     
@@ -152,4 +155,4 @@ addEventListeners();
 
 
 
-export { reloadNavList, projects, createTodoItem };
+export { reloadNavList, projects, createTodoItem, createTodoDisplay };

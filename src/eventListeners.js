@@ -1,12 +1,17 @@
 import todoModal from './todoModal.js';
 import projectModal from './projectModal.js';
 import { getProject } from './lsControl.js';
+import { createTodoDisplay } from './index.js';
 
 const viewProject = item => {
-    let activeSidebarItem = document.querySelector('.sidebar-list li.active');
+    const activeSidebarItem = document.querySelector('.sidebar-list li.active');
     activeSidebarItem.classList.remove('active');
     item.target.classList.add('active');
-    let project = getProject(item.target.textContent);
+    const project = getProject(item.target.textContent);
+    const todoDisplayContainer = document.getElementById('todo-display-container');
+    todoDisplayContainer.innerHTML = '';
+    todoDisplayContainer.appendChild(createTodoDisplay(project));
+    addNewTodoButtonListener();
 }
 
 const displayTodoModal = item => {
@@ -65,9 +70,11 @@ const addNewTodoButtonListener = () => {
 
 const addEventListeners = () => {
     // Add event listeners to the DOM
-    addNewProjectButtonListener();
-    addNewTodoButtonListener();
     addSidebarListeners();
+    addNewProjectButtonListener();
 }
 
-export { addEventListeners, addSidebarListeners, addSidebarListener };
+export { 
+    addEventListeners, addSidebarListeners, addSidebarListener,
+    addNewProjectButtonListener, addNewTodoButtonListener,
+};
