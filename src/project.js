@@ -21,6 +21,10 @@ export default class Project {
         };
     }
 
+    removeTodo(todoName) {
+        this.todos = this.todos.filter(todo => todo.title !== todoName);
+    }
+
     static fromJSON(json) {
         if (json.__class__ === 'Project') {
             return new Project(json.name, json.description, json.todos, json.nextId);
@@ -33,7 +37,7 @@ function buildDefaultProject() {
     return defaultProject;
 }
 
-export function getProjects() {
+function getProjects() {
     let projects = [];
 
     if (localStorage.length === 0) {
@@ -49,3 +53,7 @@ export function getProjects() {
     }
     return projects;
 }
+
+
+
+export { getProjects };

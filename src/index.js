@@ -1,7 +1,6 @@
 import './style.css';
 import {getProjects} from './project.js';
-import { addEventListeners, addSidebarListener } from './eventListeners.js';
-import Project from './project.js';
+import { addEventListeners, addSidebarListener, addDeleteTodoListener } from './eventListeners.js';
 
 const projects = getProjects();
 
@@ -94,7 +93,7 @@ function createTodoDisplay(project) {
         const projectTodos = project.todos;
         for (let i = 0; i < projectTodos.length; i++) {
             const todo = projectTodos[i];
-            list.appendChild(createTodoItem(todo))
+            list.appendChild(createTodoItem(todo, project))
         }
         return list
     }
@@ -105,9 +104,10 @@ function createTodoDisplay(project) {
 
 }
 
-function createTodoItem(todo) {
+function createTodoItem(todo, project) {
     const todoContainer = document.createElement('div');
     todoContainer.classList.add('todo-item');
+    todoContainer.id = todo.title;
 
     const checkbox = document.createElement('input');
     checkbox.className = 'todo-checkbox';
@@ -124,10 +124,16 @@ function createTodoItem(todo) {
     const priority = document.createElement('i');
     priority.className = 'priority-icon fa-solid fa-temperature-' + todo.priority;
 
+    const deleteButton = document.createElement('i');
+    deleteButton.className = 'fa-solid fa-trash todo-delete-button';
+    deleteButton.id = "delete-" + todo.title;
+    addDeleteTodoListener(deleteButton, todo, project);
+
     todoContainer.appendChild(checkbox);
     todoContainer.appendChild(title);
     todoContainer.appendChild(dueDate);
     todoContainer.appendChild(priority);
+    todoContainer.appendChild(deleteButton);
     
     return todoContainer;
     

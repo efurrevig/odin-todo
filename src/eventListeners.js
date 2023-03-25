@@ -34,6 +34,21 @@ const expandTodo = (item) => {
     console.log(item);
 }
 
+const deleteTodo = (todo, project) => {
+    console.log(todo);
+    console.log(project);
+    const todoDisplayContainer = document.getElementById(todo.title);
+    todoDisplayContainer.remove();
+    project.removeTodo(todo.title);
+    project.saveToLS();
+}
+
+const addDeleteTodoListener = (button, todo, project) => {
+    button.addEventListener('click', () => {
+        deleteTodo(todo, project)
+    });
+}
+
 const addSidebarListener = (item) => {
     item.addEventListener('click', viewProject);
 }
@@ -72,9 +87,11 @@ const addEventListeners = () => {
     // Add event listeners to the DOM
     addSidebarListeners();
     addNewProjectButtonListener();
+    addNewTodoButtonListener();
 }
 
 export { 
     addEventListeners, addSidebarListeners, addSidebarListener,
     addNewProjectButtonListener, addNewTodoButtonListener,
+    addDeleteTodoListener
 };
