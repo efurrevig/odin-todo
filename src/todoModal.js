@@ -149,7 +149,7 @@ function submitButton(project) {
               description = document.getElementById('description').value,
               dueDate = document.getElementById('todo-due-date').value,
               priority = document.querySelector('input[name=priority]:checked').value;
-        const todo = new Todo(title, description, dueDate, priority, project);
+        const todo = new Todo(title, description, dueDate, priority, false, project);
         document.querySelector('.todo-list').appendChild(createTodoItem(todo, project));
         closeModal();
     });

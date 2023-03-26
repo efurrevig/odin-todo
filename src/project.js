@@ -1,3 +1,5 @@
+import Todo from './todo.js';
+
 export default class Project {
     constructor(name, description, todos = [], nextId = 0) {
         this.name = name;
@@ -48,6 +50,7 @@ function getProjects() {
             const key = localStorage.key(i);
             const projectJSON = JSON.parse(localStorage.getItem(key));
             const project = Project.fromJSON(projectJSON);
+            project.todos = project.todos.map(todoJSON => Todo.fromJSON(todoJSON));
             projects.push(project);
         }
     }

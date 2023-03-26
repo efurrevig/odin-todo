@@ -1,6 +1,7 @@
 import './style.css';
 import {getProjects} from './project.js';
-import { addEventListeners, addSidebarListener, addDeleteTodoListener } from './eventListeners.js';
+import { addEventListeners, addSidebarListener, addDeleteTodoListener,
+        addTodoCheckboxListener } from './eventListeners.js';
 
 const projects = getProjects();
 
@@ -113,6 +114,10 @@ function createTodoItem(todo, project) {
     checkbox.className = 'todo-checkbox';
     checkbox.type = 'checkbox';
     checkbox.checked = todo.completed;
+    if (checkbox.checked) {
+        todoContainer.classList.add('completed');
+    }
+    addTodoCheckboxListener(checkbox, todo, project);
     // if checkbox.checked, add class 'completed' to todoContainer
     
     const title = document.createElement('p');

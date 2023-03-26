@@ -16,6 +16,8 @@
     --radio-button-hover: rgb(77, 24, 233);
 
     --modal-background-color: rgb(0, 0, 0,0.9);
+
+    --completed-background-color: rgb(40, 38, 44);
 }
 
 ::-webkit-scrollbar {
@@ -156,10 +158,13 @@ body {
     align-items: center;
     padding: 0em 1em 0em 1em;
     border-radius: 0.5em;
+    background-color: var(--bg-primary-color);
     border: 1px solid var(--bg-secondary-color);
 }
 
-
+.completed {
+    opacity: 0.3;
+}
 .todo-list .fa-solid {
     color: var(--button-primary-color);
 }

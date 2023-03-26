@@ -49,6 +49,13 @@ const addDeleteTodoListener = (button, todo, project) => {
     });
 }
 
+const addTodoCheckboxListener = (checkbox, todo, project) => {
+    checkbox.addEventListener('click', () => {
+        const todoDisplayContainer = document.getElementById(todo.title);
+        todoDisplayContainer.classList.toggle('completed');
+        todo.toggleCompleted(project);
+    });
+}
 const addSidebarListener = (item) => {
     item.addEventListener('click', viewProject);
 }
@@ -93,5 +100,5 @@ const addEventListeners = () => {
 export { 
     addEventListeners, addSidebarListeners, addSidebarListener,
     addNewProjectButtonListener, addNewTodoButtonListener,
-    addDeleteTodoListener
+    addDeleteTodoListener, addTodoCheckboxListener
 };
